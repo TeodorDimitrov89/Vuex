@@ -1,51 +1,20 @@
 <template>
   <div id="app">
-    <h1> Hello From Vuex</h1>
-    <ul>
-      <li v-for="(item, index) in items" :key="index + '_1'">
-        <h2>{{item.id}}: {{item.title}} {{item.done}}</h2>
-        <button @click="toggleTodo(item.id)" class="toggle">Toggle TODO</button>
-        <button @click="deleteToDo(item.id)" class="danger">X</button>
-      </li>
-    </ul>
-    <input type="text" v-model="todo">
-    <button class="add" @click="addTodo">Add new Todo</button>
+    <app-header></app-header>
+    <div class="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 
 <script>
-    import {mapState} from 'vuex'
-
+    // import {mapState} from 'vuex'
+    import AppHeader from './components/AppHeader'
     export default {
         name: 'App',
-
-        mounted() {
-            this.$store.dispatch('loadPosts')
-        },
-        computed: {
-            ...mapState([
-                'items',
-            ]),
-            todo: {
-                get () {
-                    return this.$store.state.newTodo
-                },
-                set (value) {
-                    this.$store.commit('UPDATE_TODO', value)
-                }
-            }
-        },
-        methods: {
-            toggleTodo(id) {
-                this.$store.dispatch('toggleToDo', id)
-            },
-            deleteToDo(id) {
-                this.$store.dispatch('deleteToDo', id)
-            },
-            addTodo() {
-                this.$store.dispatch('addToDo')
-            }
+        components: {
+            AppHeader
         }
     }
 </script>
