@@ -1,29 +1,48 @@
 <template>
   <div class="dropdown-menu" style="min-width: 320px; right: 0; left: auto;" aria-labelledby="dropdownMenuButton">
-    <div>
-      <div class="px-2 d-flex justify-content-between">
-       <div>
-         <strong>Product title</strong>
-         <br>
-         1 x $23
-       </div>
-        <div>
-          <a href="#" class="badge badge-secondary">remove</a>
+    <div v-if="cart.length > 0">
+      <div v-for="item in cart" :key="item.product.id">
+        <div class="px-2 d-flex justify-content-around align-items-center"  v-if="item">
+          <div class="img-fluid" >
+            <img :src="item.product.image" alt="" style="width: 100px">
+          </div>
+          <div>
+            <strong>{{item.product.title}} </strong>
+            <br>
+            {{item.quantity}} x ${{item.product.price}}
+          </div>
+          <div>
+            <a href="#" class="badge badge-secondary">remove</a>
+          </div>
         </div>
+        <hr/>
+      </div>
+      <div class="d-flex justify-content-between px-2">
+          <span>Total: ${{cartTotalPrice}}</span>
+        <a href="#">Clear Cart</a>
       </div>
     </div>
-    <hr />
-    <div class="d-flex justify-content-between">
-      <span>Total: $23</span>
-      <a href="#">Clear Cart</a>
-
-    </div>
   </div>
+
 </template>
 
 <script>
+    import {mapState} from 'vuex'
+    import {mapGetters} from 'vuex'
+
     export default {
-        name: "mini-cart"
+        name: "mini-cart",
+        computed: {
+            ...mapState([
+                'cart'
+            ]),
+            ...mapGetters([
+                'cartTotalPrice'
+            ])
+        },
+        mounted() {
+            this.$store.dispatch('getCartItems')
+        }
     }
 </script>
 

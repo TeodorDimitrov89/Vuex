@@ -18,7 +18,7 @@
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false">
-            0 Cart
+            {{cartItemCount}} Cart
           </button>
           <div @click="$event.stopPropagation()">
             <mini-cart></mini-cart>
@@ -34,10 +34,17 @@
 
 <script>
     import MiniCart from './MiniCart'
+    import {mapGetters} from 'vuex'
     export default {
         name: "app-header",
         components: {
             MiniCart
+        },
+
+        computed: {
+            ...mapGetters([
+                'cartItemCount',
+            ])
         }
     }
 </script>

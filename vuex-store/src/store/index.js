@@ -14,7 +14,7 @@ import * as actions from './actions'
 
 
 export default new vuex.Store({
-    strict: true,
+    strict: false,
     state,
     getters,
     mutations, // assign new state, or refresh the state

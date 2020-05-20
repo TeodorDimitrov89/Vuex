@@ -1,7 +1,7 @@
 <template>
   <div class="col-3 mt-3">
     <div class="card-group">
-      <div class="card" >
+      <div class="card">
         <img class="w-100" :src="product.image" alt="">
         <div class="card-body">
           <h5 class="card-title">
@@ -12,7 +12,7 @@
 
         </div>
         <div class="px-4 pb-3">
-          <button class="btn btn-primary">Add to Cart</button>
+          <button class="btn btn-primary" @click="addToCart()">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -23,7 +23,15 @@
 <script>
     export default {
         name: "product-card",
-        props: ['product']
+        props: ['product'],
+        methods: {
+            addToCart() {
+                this.$store.dispatch('addProductToCart', {
+                    product: this.product,
+                    quantity: 1
+                })
+            }
+        }
     }
 </script>
 

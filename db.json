@@ -35,5 +35,6 @@
         "image": "https://via.placeholder.com/150x100",
         "price": "143.0"
       }
-    ]
+    ],
+  "cart" : []
 }
