@@ -2,13 +2,13 @@
   <div class="col-3 mt-3">
     <div class="card-group">
       <div class="card" >
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+        <img class="w-100" :src="product.image" alt="">
         <div class="card-body">
           <h5 class="card-title">
-            <router-link :to="{name: 'product', params: {id: 48}}">Product title</router-link>
-
+            <router-link :to="{name: 'product', params: {id: product.id}}">{{product.title}}</router-link>
           </h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <strong>${{product.price}}</strong>
+          <p class="card-text">{{product.description}}</p>
 
         </div>
         <div class="px-4 pb-3">
@@ -22,7 +22,8 @@
 
 <script>
     export default {
-        name: "product-card"
+        name: "product-card",
+        props: ['product']
     }
 </script>
 

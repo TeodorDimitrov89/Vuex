@@ -16,6 +16,7 @@
     <div class="d-flex justify-content-between">
       <span>Total: $23</span>
       <a href="#">Clear Cart</a>
+
     </div>
   </div>
 </template>
