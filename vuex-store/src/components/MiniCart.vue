@@ -12,14 +12,14 @@
             {{item.quantity}} x ${{item.product.price}}
           </div>
           <div>
-            <a href="#" class="badge badge-secondary">remove</a>
+            <a href="#" class="badge badge-secondary" @click.prevent="removeItemFromCart(item.product)">remove</a>
           </div>
         </div>
         <hr/>
       </div>
       <div class="d-flex justify-content-between px-2">
           <span>Total: ${{cartTotalPrice}}</span>
-        <a href="#">Clear Cart</a>
+        <a href="#" @click.prevent="removeAllCartItems()">Clear Cart</a>
       </div>
     </div>
   </div>
@@ -42,6 +42,14 @@
         },
         mounted() {
             this.$store.dispatch('getCartItems')
+        },
+        methods: {
+            removeItemFromCart(product) {
+                this.$store.dispatch('removeProductFromCart', product)
+            },
+            removeAllCartItems() {
+                this.$store.dispatch('removeAllCartItems')
+            }
         }
     }
 </script>
