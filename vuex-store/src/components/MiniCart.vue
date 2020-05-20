@@ -12,7 +12,7 @@
             {{item.quantity}} x ${{item.product.price}}
           </div>
           <div>
-            <a href="#" class="badge badge-secondary" @click.prevent="removeItemFromCart(item.product)">remove</a>
+            <a href="#" class="badge badge-secondary" @click.prevent="removeProductFromCart(item.product)">remove</a>
           </div>
         </div>
         <hr/>
@@ -27,29 +27,28 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
-    import {mapGetters} from 'vuex'
+    import {mapState, mapGetters, mapActions} from 'vuex'
 
     export default {
         name: "mini-cart",
         computed: {
-            ...mapState([
-                'cart'
-            ]),
-            ...mapGetters([
-                'cartTotalPrice'
-            ])
+            ...mapState(['cart']),
+            ...mapGetters(['cartTotalPrice'])
         },
         mounted() {
-            this.$store.dispatch('getCartItems')
+            // this.$store.dispatch('getCartItems')
+            this.getCartItems()
         },
         methods: {
-            removeItemFromCart(product) {
-                this.$store.dispatch('removeProductFromCart', product)
-            },
-            removeAllCartItems() {
-                this.$store.dispatch('removeAllCartItems')
-            }
+            ...mapActions(['removeProductFromCart', 'removeAllCartItems', 'getCartItems'] ),
+
+            // removeItemFromCart(product) {
+            //     this.$store.dispatch('removeProductFromCart', product)
+            // },
+            // removeAllCartItems() {
+            //     this.$store.dispatch('removeAllCartItems')
+            // },
+            // ...mapActions(['getCartItems'] ),
         }
     }
 </script>
