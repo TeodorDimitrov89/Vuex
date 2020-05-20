@@ -22,3 +22,9 @@ export const ADD_TO_CART = (state, { product, quantity }) => {
         quantity
     })
 }
+
+
+export const SET_CART_ITEMS = (state, cartItems) => {
+    state.cart = cartItems;
+    //TODO add real database Firebase
+}

@@ -28,10 +28,6 @@ export const addProductToCart = ({commit}, {product, quantity}) => {
                 id: product.id,
                 quantity,
             // }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-
         })
         .then(response => console.log(response))
         .catch(err => console.log(err))
@@ -39,12 +35,14 @@ export const addProductToCart = ({commit}, {product, quantity}) => {
 }
 
 
-export const addCartItems = ({commit}) => {
+export const getCartItems = ({commit}) => {
     //Call API to get all cartItems
 
 
     axios
         .get('https://my-json-server.typicode.com/TeodorDimitrov89/Vuex/cart/')
-        .then(response => console.log(response))
+        .then(response => {
+            commit('SET_CART_ITEMS', response.data)
+        })
         .catch(error => console.log(error))
 }
